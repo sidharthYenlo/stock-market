@@ -42,7 +42,8 @@ public class StockController {
     private static Log logger = LogFactory.getLog(StockController.class);
 
     @RequestMapping( value = "/add",method = RequestMethod.POST)
-    public @ResponseBody StockPriceWrapperDTO addStock (@Valid @RequestBody StockPriceWrapperDTO stockPriceWrapperDTO) throws DuplicateEntityFoundException{
+    public @ResponseBody
+    StockPriceWrapperDTO addStock (@Valid @RequestBody StockPriceWrapperDTO stockPriceWrapperDTO) throws DuplicateEntityFoundException{
 
             //StockPriceWrapperDTO stockPriceWrapperDTO = objectMapper.readValue(stockPriceWrapperDTOJson, StockPriceWrapperDTO.class);
             StockDTO stockDTO = stockService.addStocks(stockPriceWrapperDTO.getStockDTO());
