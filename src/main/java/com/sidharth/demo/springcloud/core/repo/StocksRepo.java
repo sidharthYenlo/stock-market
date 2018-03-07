@@ -1,6 +1,6 @@
-package com.sidharth.demo.springcloud.core.Repo;
+package com.sidharth.demo.springcloud.core.repo;
 
-import com.sidharth.demo.springcloud.core.Model.Stocks;
+import com.sidharth.demo.springcloud.core.model.Stocks;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface StocksRepo  extends Repository<Stocks,Long> {
-//
-//    @Query(value = "SELECT * from  stocks WHERE stocks.id = :id", nativeQuery = true)
-//    List<Stocks> findStocksById(Long id);
 
     @Query(value = "SELECT * from  stocks WHERE stocks.id = :id", nativeQuery = true)
     Stocks findById(@Param("id") Long id );

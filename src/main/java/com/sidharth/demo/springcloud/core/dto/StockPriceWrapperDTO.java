@@ -1,4 +1,4 @@
-package com.sidharth.demo.springcloud.core.Dto;
+package com.sidharth.demo.springcloud.core.dto;
 
 import com.sidharth.demo.springcloud.core.validator.IsCorrectStock;
 
@@ -17,8 +17,8 @@ public class StockPriceWrapperDTO {
     public StockPriceWrapperDTO(List<PriceDTO> priceDTOList, StockDTO stockDTO) {
         this.priceDTOList = priceDTOList;
         this.stockDTO = stockDTO;
-        this.priceDTO=priceDTOList.size()>0 ?
-               priceDTOList.get(0): null;
+        this.priceDTO=priceDTOList.isEmpty() ?
+                null:priceDTOList.get(0);
     }
 
     public StockPriceWrapperDTO(PriceDTO priceDTO, StockDTO stockDTO) {

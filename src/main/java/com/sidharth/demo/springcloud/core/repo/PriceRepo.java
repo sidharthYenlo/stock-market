@@ -1,7 +1,6 @@
-package com.sidharth.demo.springcloud.core.Repo;
+package com.sidharth.demo.springcloud.core.repo;
 
-import com.sidharth.demo.springcloud.core.Model.Price;
-import com.sidharth.demo.springcloud.core.Model.Stocks;
+import com.sidharth.demo.springcloud.core.model.Price;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;

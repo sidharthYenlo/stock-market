@@ -1,4 +1,4 @@
-package com.sidharth.demo.springcloud.core.Model;
+package com.sidharth.demo.springcloud.core.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

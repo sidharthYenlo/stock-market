@@ -1,4 +1,4 @@
-package com.sidharth.demo.springcloud.core.Dto;
+package com.sidharth.demo.springcloud.core.dto;
 
 /**
  * @author sidharthdash ON 3/5/18

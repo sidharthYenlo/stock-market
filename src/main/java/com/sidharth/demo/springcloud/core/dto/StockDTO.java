@@ -1,16 +1,16 @@
-package com.sidharth.demo.springcloud.core.Model;
+package com.sidharth.demo.springcloud.core.dto;
 
-import javax.persistence.*;
+import org.hibernate.validator.constraints.NotBlank;
 
-@Entity
-@Table(name = "Stocks")
-public class Stocks {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+public class StockDTO {
+
     long id;
+    @NotBlank
     String stockName;
+    @NotBlank
     String stockCode;
+
 
 
     public long getId() {

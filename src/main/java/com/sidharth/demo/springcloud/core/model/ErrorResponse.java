@@ -1,4 +1,4 @@
-package com.sidharth.demo.springcloud.core.Model;
+package com.sidharth.demo.springcloud.core.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

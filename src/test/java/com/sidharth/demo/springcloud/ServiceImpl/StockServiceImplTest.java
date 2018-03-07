@@ -1,11 +1,11 @@
 package com.sidharth.demo.springcloud.ServiceImpl;
 
-import com.sidharth.demo.springcloud.core.Dto.StockDTO;
-import com.sidharth.demo.springcloud.core.Model.Stocks;
-import com.sidharth.demo.springcloud.core.Repo.PriceRepo;
-import com.sidharth.demo.springcloud.core.Repo.StocksRepo;
-import com.sidharth.demo.springcloud.core.Service.PriceService;
-import com.sidharth.demo.springcloud.core.Service.StockService;
+import com.sidharth.demo.springcloud.core.dto.StockDTO;
+import com.sidharth.demo.springcloud.core.model.Stocks;
+import com.sidharth.demo.springcloud.core.repo.PriceRepo;
+import com.sidharth.demo.springcloud.core.repo.StocksRepo;
+import com.sidharth.demo.springcloud.core.service.PriceService;
+import com.sidharth.demo.springcloud.core.service.StockService;
 import com.sidharth.demo.springcloud.exception.DuplicateEntityFoundException;
 import com.sidharth.demo.springcloud.exception.EntityNotFoundException;
 import org.junit.Test;

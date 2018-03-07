@@ -1,7 +1,6 @@
 package com.sidharth.demo.springcloud.core.validator;
 
-import com.sidharth.demo.springcloud.core.Dto.StockDTO;
-import com.sidharth.demo.springcloud.core.Dto.StockPriceWrapperDTO;
+import com.sidharth.demo.springcloud.core.dto.StockPriceWrapperDTO;
 import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintValidator;

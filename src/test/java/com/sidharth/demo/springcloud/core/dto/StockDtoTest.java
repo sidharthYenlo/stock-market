@@ -1,7 +1,7 @@
-package com.sidharth.demo.springcloud.core.Dto;
+package com.sidharth.demo.springcloud.core.dto;
 
-import com.sidharth.demo.springcloud.core.Model.Price;
-import com.sidharth.demo.springcloud.core.Model.Stocks;
+import com.sidharth.demo.springcloud.core.model.Price;
+import com.sidharth.demo.springcloud.core.model.Stocks;
 import com.sun.jmx.snmp.Timestamp;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;

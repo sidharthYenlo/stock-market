@@ -1,0 +1,10 @@
+INSERT INTO stocks (stock_name,stock_code) VALUES ("IBM","IBM");
+INSERT INTO stocks (stock_name,stock_code) VALUES ("COGNIZANT","COG");
+INSERT INTO stocks (stock_name,stock_code) VALUES ("MICROSOFT","MIR");
+INSERT INTO stocks (stock_name,stock_code) VALUES ("FACEBOOK","FAC");
+INSERT INTO stocks (stock_name,stock_code) VALUES ("GOOGLE","GOG");
+INSERT INTO Price (stock_id,price) VALUES (1,21.5);
+INSERT INTO Price (stock_id,price) VALUES (2,22.5);
+INSERT INTO Price (stock_id,price) VALUES (3,23.5);
+INSERT INTO Price (stock_id,price) VALUES (4,24.5);
+INSERT INTO Price (stock_id,price) VALUES (5,25.5);

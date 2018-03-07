@@ -1,11 +1,10 @@
-package com.sidharth.demo.springcloud.core.Service;
+package com.sidharth.demo.springcloud.core.service;
 
-import com.sidharth.demo.springcloud.core.Dto.StockDTO;
-import com.sidharth.demo.springcloud.core.Model.Stocks;
+import com.sidharth.demo.springcloud.core.dto.StockDTO;
+import com.sidharth.demo.springcloud.core.model.Stocks;
 import com.sidharth.demo.springcloud.exception.DuplicateEntityFoundException;
 import com.sidharth.demo.springcloud.exception.EntityNotFoundException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface StockService {

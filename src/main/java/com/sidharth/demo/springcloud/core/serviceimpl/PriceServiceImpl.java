@@ -1,12 +1,9 @@
-package com.sidharth.demo.springcloud.core.ServiceImpl;
+package com.sidharth.demo.springcloud.core.serviceimpl;
 
-import com.sidharth.demo.springcloud.core.Dto.PriceDTO;
-import com.sidharth.demo.springcloud.core.Dto.StockDTO;
-import com.sidharth.demo.springcloud.core.Model.Price;
-import com.sidharth.demo.springcloud.core.Model.Stocks;
-import com.sidharth.demo.springcloud.core.Repo.PriceRepo;
-import com.sidharth.demo.springcloud.core.Service.PriceService;
-import com.sun.jmx.snmp.Timestamp;
+import com.sidharth.demo.springcloud.core.dto.PriceDTO;
+import com.sidharth.demo.springcloud.core.model.Price;
+import com.sidharth.demo.springcloud.core.repo.PriceRepo;
+import com.sidharth.demo.springcloud.core.service.PriceService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,19 +21,19 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public PriceDTO getLatestPrices(long stockId) {
         List<Price> priceList=priceRepo.findById(stockId,1);
-        return  priceList.size()>0 ? priceEntityToDTO(priceList.get(0)) : null;
+        return  priceList.isEmpty() ?  new PriceDTO() :priceEntityToDTO(priceList.get(0)) ;
     }
 
     @Override
     public List<PriceDTO> getAllPrices(long stockId) {
         List<Price> priceList=priceRepo.findAllById(stockId);
-        return   priceList.size()>0 ?priceEntityListToDTOList(priceList) : null;
+        return   priceList.isEmpty() ?new ArrayList<>():priceEntityListToDTOList(priceList);
     }
 
     @Override
     public List<PriceDTO> getLimitedPrices(long stockId,int numberOfEntries) {
         List<Price> priceList=priceRepo.findById(stockId,numberOfEntries);
-        return   priceList.size()>0 ?priceEntityListToDTOList(priceList) : null;
+        return   priceList.isEmpty() ? new ArrayList<>():priceEntityListToDTOList(priceList);
     }
 
     @Override
@@ -44,13 +41,13 @@ public class PriceServiceImpl implements PriceService {
         Price price = priceDTOtoEntity(priceDTO);
         priceRepo.createPrice(stockId,price.getPrice());
         List<Price> priceList=priceRepo.findById(stockId,1);
-        Price updatePrice=priceList.size()>0 ? (priceList.get(0)) : null;
+        Price updatePrice=priceList.isEmpty() ?  null : (priceList.get(0));
         return priceEntityToDTO(updatePrice);
     }
 
     @Override
-    public List<PriceDTO> getPricesBetweenTime(long startTime, long endTime,long stockId) {
-return null;
+    public List<PriceDTO> getPricesBetweenTime(long startTime, long endTime,long stockId) throws UnsupportedOperationException{
+      return new ArrayList<>();
     }
 
 
@@ -60,10 +57,9 @@ return null;
         if (null!=price) {
             ModelMapper modelMapper = new ModelMapper();
             modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-            PriceDTO priceDTO = modelMapper.map(price, PriceDTO.class);
-            return priceDTO;
+            return modelMapper.map(price, PriceDTO.class);
         }
-        return null;
+        return new PriceDTO();
     }
 
     @Override
@@ -71,10 +67,9 @@ return null;
         if(null!=priceDTO) {
             ModelMapper modelMapper = new ModelMapper();
             modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
-            Price price = modelMapper.map(priceDTO, Price.class);
-            return price;
+            return modelMapper.map(priceDTO, Price.class);
         }
-        return null;
+        return new Price();
     }
 
 
@@ -90,6 +85,6 @@ return null;
             );
             return priceDTOList;
         }
-        return null;
+        return new ArrayList<>();
     }
 }

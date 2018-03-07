@@ -1,4 +1,4 @@
-package com.sidharth.demo.springcloud.core.Dto;
+package com.sidharth.demo.springcloud.core.dto;
 
 
 import org.hibernate.validator.constraints.NotBlank;

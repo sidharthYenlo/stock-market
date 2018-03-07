@@ -1,11 +1,11 @@
 package com.sidharth.demo.springcloud.ServiceImpl;
 
-import com.sidharth.demo.springcloud.core.Dto.PriceDTO;
-import com.sidharth.demo.springcloud.core.Model.Price;
-import com.sidharth.demo.springcloud.core.Repo.PriceRepo;
-import com.sidharth.demo.springcloud.core.Repo.StocksRepo;
-import com.sidharth.demo.springcloud.core.Service.PriceService;
-import com.sidharth.demo.springcloud.core.Service.StockService;
+import com.sidharth.demo.springcloud.core.dto.PriceDTO;
+import com.sidharth.demo.springcloud.core.model.Price;
+import com.sidharth.demo.springcloud.core.repo.PriceRepo;
+import com.sidharth.demo.springcloud.core.repo.StocksRepo;
+import com.sidharth.demo.springcloud.core.service.PriceService;
+import com.sidharth.demo.springcloud.core.service.StockService;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
