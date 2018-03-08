@@ -6,9 +6,9 @@ import com.sidharth.demo.springcloud.core.repo.PriceRepo;
 import com.sidharth.demo.springcloud.core.repo.StocksRepo;
 import com.sidharth.demo.springcloud.core.service.PriceService;
 import com.sidharth.demo.springcloud.core.service.StockService;
-import org.junit.Test;
-import org.junit.Before; 
 import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** 
 * PriceServiceImpl Tester. 
@@ -63,7 +64,6 @@ public void before() throws Exception {
     Thread.sleep(1000);
     priceRepo.createPrice(stocksRepo.findStocksByStockCode("Cog").getId(),50.0);
     Thread.sleep(1000);
-
 } 
 
 @After
@@ -83,8 +83,8 @@ public void testGetLatestPrices() throws Exception {
 
     assertEquals(priceService.getLatestPrices(stocksRepo.findStocksByStockCode("IBM").getId()).getPrice(),30.0);
     assertEquals(priceService.getLatestPrices(stocksRepo.findStocksByStockCode("Cog").getId()).getPrice(),50.0);
-    assertEquals(priceService.getLatestPrices(123),null);
-    assertEquals(priceService.getLatestPrices(3213),null);
+    assertEquals(0,priceService.getLatestPrices(123).getPrice());
+    assertEquals(0,priceService.getLatestPrices(3213).getPrice());
 
 } 
 
@@ -97,8 +97,8 @@ public void testGetLatestPrices() throws Exception {
 public void testGetAllPrices() throws Exception {
     assertEquals(priceService.getAllPrices(stocksRepo.findStocksByStockCode("IBM").getId()).size(),3);
     assertEquals(priceService.getAllPrices(stocksRepo.findStocksByStockCode("Cog").getId()).size(),2);
-    assertEquals(priceService.getLatestPrices(123),null);
-    assertEquals(priceService.getLatestPrices(3213),null);
+    assertEquals(0,priceService.getLatestPrices(123).getPrice());
+    assertEquals(0,priceService.getLatestPrices(3213).getPrice());
 }
 
 /**
@@ -112,8 +112,8 @@ public void testGetLimitedPrices() throws Exception {
     assertEquals(priceService.getLimitedPrices(stocksRepo.findStocksByStockCode("IBM").getId(),3).size(),3);
     assertEquals(priceService.getLimitedPrices(stocksRepo.findStocksByStockCode("IBM").getId(),4).size(),3);
     assertEquals(priceService.getLimitedPrices(stocksRepo.findStocksByStockCode("Cog").getId(),2).size(),2);
-    assertEquals(priceService.getLimitedPrices(213423,4),null);
-    assertEquals(priceService.getLimitedPrices(123412,2),null);
+    assertTrue(priceService.getLimitedPrices(213423,4).isEmpty());
+    assertTrue(priceService.getLimitedPrices(123412,2).isEmpty());
 
 }
 
@@ -157,7 +157,7 @@ public void testPriceEntityToDTO() throws Exception {
     PriceDTO priceDTO=priceService.priceEntityToDTO(price);
     assertEquals(priceDTO.getPrice(),price.getPrice());
     priceDTO=priceService.priceEntityToDTO(null);
-    assertEquals(priceDTO,null);
+    assertEquals(0,priceDTO.getPrice());
 
 }
 
@@ -173,7 +173,7 @@ public void testPriceDTOtoEntity() throws Exception {
     Price price = priceService.priceDTOtoEntity(priceDTO);
     assertEquals(price.getPrice(),priceDTO.getPrice());
     price=priceService.priceDTOtoEntity(null);
-    assertEquals(price,null);
+    assertEquals(0,price.getPrice());
 
 }
 
@@ -205,7 +205,7 @@ public void testPriceEntityListToDTOList() throws Exception {
     assertEquals(priceList.size(),priceDTOList.size());
     priceDTOList = priceService.priceEntityListToDTOList(null);
 
-    assertEquals(priceDTOList,null);
+    assertTrue(priceDTOList.isEmpty());
 
 
 

@@ -46,12 +46,6 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public List<PriceDTO> getPricesBetweenTime(long startTime, long endTime,long stockId) throws UnsupportedOperationException{
-      return new ArrayList<>();
-    }
-
-
-    @Override
     public PriceDTO priceEntityToDTO(Price price){
 
         if (null!=price) {

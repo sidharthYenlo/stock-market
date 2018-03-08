@@ -11,7 +11,6 @@ public interface PriceService {
     public List<PriceDTO> getAllPrices(long stockId);
     public List<PriceDTO> getLimitedPrices(long stockId,int numberOfEntries);
     public PriceDTO updatePrices(PriceDTO priceDTO,long stockId);
-    public List<PriceDTO> getPricesBetweenTime(long startTime,long endTime,long stockId);
     public PriceDTO priceEntityToDTO(Price price);
     public Price priceDTOtoEntity(PriceDTO priceDTO);
     public List<PriceDTO> priceEntityListToDTOList(List<Price> priceList);

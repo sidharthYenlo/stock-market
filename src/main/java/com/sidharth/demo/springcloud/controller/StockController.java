@@ -33,7 +33,7 @@ public class StockController {
 
     private static Log logger = LogFactory.getLog(StockController.class);
 
-    @RequestMapping( value = "/add",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
     StockPriceWrapperDTO addStock (@Valid @RequestBody StockPriceWrapperDTO stockPriceWrapperDTO) throws DuplicateEntityFoundException{
 
@@ -43,7 +43,7 @@ public class StockController {
     }
 
 
-    @RequestMapping(value = "/put/{stockId}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/{stockId}",method = RequestMethod.PUT)
     public @ResponseBody
     StockPriceWrapperDTO updateStock (@PathVariable("stockId") long stockId,@RequestBody StockPriceWrapperDTO stockPriceWrapperDTO) throws EntityNotFoundException{
             StockDTO stockDTO = stockService.getStocksById(stockId);
@@ -52,12 +52,15 @@ public class StockController {
                 if (null != priceDTO)
                     return new StockPriceWrapperDTO(priceDTO, stockDTO);
             }
+            if(logger.isDebugEnabled())
+            logger.debug("Stock for StockId "+stockId+ " is not found ");
+
             return null;
 
     }
 
 
-    @RequestMapping(value = "/get/{stockId}/history",method = RequestMethod.GET)
+    @RequestMapping(value = "/{stockId}/history",method = RequestMethod.GET)
     public @ResponseBody
     StockPriceWrapperDTO getStockAllPrice (@PathVariable("stockId") long stockId) throws EntityNotFoundException{
 
@@ -66,24 +69,13 @@ public class StockController {
         if(null!=stockDTO && null!=priceDTOList)
             return new StockPriceWrapperDTO(priceDTOList,stockDTO);
 
-        return null;
-    }
-
-
-    @RequestMapping(value = "/get/{stockId}/history/{startTime}/{endTime}",method = RequestMethod.GET)
-    public @ResponseBody
-    StockPriceWrapperDTO getStockAllPriceBetweenTime (@PathVariable("stockId") long stockId
-    ,@PathVariable("startTime") long startTime,@PathVariable("endTime") long endTime) throws EntityNotFoundException{
-        StockDTO stockDTO = stockService.getStocksById(stockId);
-        List<PriceDTO> priceDTOList=priceService.getPricesBetweenTime(startTime,endTime,stockId);
-        if(null!=stockDTO && null!=priceDTOList)
-         return new StockPriceWrapperDTO(priceDTOList,stockDTO);
+        if(logger.isDebugEnabled())
+            logger.debug("Stock for StockId "+stockId+ " is not found ");
 
         return null;
     }
 
-
-    @RequestMapping(value = "/get/{stockId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{stockId}",method = RequestMethod.GET)
     public @ResponseBody
     StockPriceWrapperDTO getStock (@PathVariable("stockId") long stockId) throws EntityNotFoundException{
         StockDTO stockDTO=stockService.getStocksById(stockId);
@@ -91,6 +83,8 @@ public class StockController {
         if(null!=stockDTO && null!=priceDTO)
         return new StockPriceWrapperDTO(priceDTO,stockDTO);
 
+        if(logger.isDebugEnabled())
+            logger.debug("Stock for StockId "+stockId+ " is not found ");
         return null;
     }
 

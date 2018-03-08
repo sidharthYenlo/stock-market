@@ -13,7 +13,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableResourceServer
 @EnableWebSecurity
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
-	// needs to be a separate config in order to be used in unit test with custom slices
     @Autowired
     public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
