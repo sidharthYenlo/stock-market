@@ -1,5 +1,6 @@
 package com.sidharth.demo.springcloud.ServiceImpl;
 
+import com.sidharth.demo.springcloud.SpringcloudApplication;
 import com.sidharth.demo.springcloud.core.dto.PriceDTO;
 import com.sidharth.demo.springcloud.core.model.Price;
 import com.sidharth.demo.springcloud.core.repo.PriceRepo;
@@ -12,6 +13,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -28,20 +32,27 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 * @version 1.0 
 */
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+
+@ActiveProfiles("test")
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = SpringcloudApplication.class)
 public class PriceServiceImplTest {
+
+
 
     @Autowired
     PriceService priceService;
+
     @Autowired
     StockService stockService;
 
     @Autowired
     PriceRepo priceRepo;
 
+
     @Autowired
     StocksRepo stocksRepo;
+
 
 
 @Before
@@ -64,20 +75,23 @@ public void before() throws Exception {
     Thread.sleep(1000);
     priceRepo.createPrice(stocksRepo.findStocksByStockCode("Cog").getId(),50.0);
     Thread.sleep(1000);
-} 
+}
 
 @After
 public void after() throws Exception {
+    priceRepo.deleteAll();
+    stocksRepo.deleteAll();
 
-} 
 
-/** 
-* 
-* Method: getLatestPrices(long stockId) 
-* 
-*/ 
+}
+
+/**
+*
+* Method: getLatestPrices(long stockId)
+*
+*/
 @Test
-public void testGetLatestPrices() throws Exception { 
+public void testGetLatestPrices() throws Exception {
 //TODO: Test goes here...
 
 
@@ -86,7 +100,7 @@ public void testGetLatestPrices() throws Exception {
     assertEquals(0,priceService.getLatestPrices(123).getPrice());
     assertEquals(0,priceService.getLatestPrices(3213).getPrice());
 
-} 
+}
 
 /**
 *

@@ -22,7 +22,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/h2-console/*").permitAll().and()
+                .authorizeRequests().antMatchers("/swagger*").permitAll().and()
                 .authorizeRequests()
                 .anyRequest().authenticated().and()
                 .sessionManagement()

@@ -4,16 +4,22 @@ import com.sidharth.demo.springcloud.core.model.Price;
 import com.sidharth.demo.springcloud.core.model.Stocks;
 import com.sun.jmx.snmp.Timestamp;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import java.util.ArrayList;
 
+//@RunWith(SpringRunner.class)
+@SpringBootTest
 public class StockDtoTest {
     private ModelMapper modelMapper = new ModelMapper();
+
 
     @Test
     public void whenConvertStockEntityToStockDto_thenCorrect() {

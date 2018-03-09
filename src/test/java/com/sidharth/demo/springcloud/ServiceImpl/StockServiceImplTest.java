@@ -1,5 +1,6 @@
 package com.sidharth.demo.springcloud.ServiceImpl;
 
+import com.sidharth.demo.springcloud.SpringcloudApplication;
 import com.sidharth.demo.springcloud.core.dto.StockDTO;
 import com.sidharth.demo.springcloud.core.model.Stocks;
 import com.sidharth.demo.springcloud.core.repo.PriceRepo;
@@ -14,6 +15,8 @@ import org.junit.After;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,8 +29,10 @@ import static org.junit.jupiter.api.Assertions.*;
 * @version 1.0 
 */
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@ActiveProfiles("test")
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = SpringcloudApplication.class)
+
 public class StockServiceImplTest {
 
 
@@ -57,17 +62,20 @@ public void before() throws Exception {
     stocksRepo.createStocks(stockName2,stockCode2);
 
 
-} 
+}
 
 @After
-public void after() throws Exception { 
-} 
+public void after() throws Exception {
+    priceRepo.deleteAll();
+    stocksRepo.deleteAll();
 
-/** 
-* 
-* Method: addStocks(StockDTO stockDTO) 
-* 
-*/ 
+}
+
+/**
+*
+* Method: addStocks(StockDTO stockDTO)
+*
+*/
 @Test
 public void testAddStocks() throws Exception {
     String stockName="Microsoft";
@@ -91,13 +99,13 @@ public void testAddStocks() throws Exception {
         assertEquals(e.getMessage(),duplicateEntriesFoundException.getMessage());
     }
 
-} 
+}
 
-/** 
-* 
-* Method: updateStocks(StockDTO stockDTO) 
-* 
-*/ 
+/**
+*
+* Method: updateStocks(StockDTO stockDTO)
+*
+*/
 @Test
 public void testUpdateStocks() throws Exception {
 
@@ -131,13 +139,13 @@ public void testUpdateStocks() throws Exception {
     }
 
 
-} 
+}
 
-/** 
-* 
-* Method: getStocksById(long id) 
-* 
-*/ 
+/**
+*
+* Method: getStocksById(long id)
+*
+*/
 @Test
 public void testGetStocksById() throws Exception {
     int stockId=999999999;
@@ -152,26 +160,26 @@ public void testGetStocksById() throws Exception {
     assertEquals(stockService.getStocksById(1).getStockCode(),stockCode1);
     assertEquals(stockService.getStocksById(2).getStockCode(),stockCode2);
 
-} 
+}
 
-/** 
-* 
-* Method: getAllStocks() 
-* 
-*/ 
+/**
+*
+* Method: getAllStocks()
+*
+*/
 @Test
 public void testGetAllStocks() throws Exception {
 
     assertEquals(stockService.getAllStocks().size(),numberOfEntries);
 
 
-} 
+}
 
-/** 
-* 
-* Method: getStocksByName(String stockName) 
-* 
-*/ 
+/**
+*
+* Method: getStocksByName(String stockName)
+*
+*/
 @Test
 public void testGetStocksByName() throws Exception {
     String randomName="randomName";
@@ -221,10 +229,10 @@ public void testGetStocksByName() throws Exception {
 
 
     /**
-* 
-* Method: stockEntityToDTO(Stocks stocks) 
-* 
-*/ 
+*
+* Method: stockEntityToDTO(Stocks stocks)
+*
+*/
 @Test
 public void testStockEntityToDTO() throws Exception {
     Stocks stocks1 = new Stocks();
@@ -239,13 +247,13 @@ public void testStockEntityToDTO() throws Exception {
     assertEquals(stockService.stockEntityToDTO(stocks2).getStockCode(),stocks2.getStockCode());
     assertNull(stockService.stockEntityToDTO(null));
 
-} 
+}
 
-/** 
-* 
-* Method: stockDTOtoEntity(StockDTO stockDTO) 
-* 
-*/ 
+/**
+*
+* Method: stockDTOtoEntity(StockDTO stockDTO)
+*
+*/
 @Test
 public void testStockDTOtoEntity() throws Exception {
 
@@ -261,6 +269,6 @@ public void testStockDTOtoEntity() throws Exception {
     assertEquals(stockService.stockDTOtoEntity(stockDTO2).getStockCode(),stockDTO2.getStockCode());
     assertNull(stockService.stockDTOtoEntity(null));
 
-} 
+}
 
 } 
