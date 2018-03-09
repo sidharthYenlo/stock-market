@@ -1,7 +1,7 @@
 # Stock-market
 A small production ready Spring boot application for stock trading. It is protected by OAuth2
 
-###Prerequisite
+### Prerequisite ###
 1. Mysql server
 2. JDK
 3. Maven
@@ -15,7 +15,7 @@ A small production ready Spring boot application for stock trading. It is protec
 5. Sample __Postman__ request are in folder resources/templates
 
 
-###Getting Access Token ###
+### Getting Access Token ###
 1. http request to _http://localhost:8080/oauth/token_
 2. User Credentials
     2. grant type : _password_
