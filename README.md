@@ -15,7 +15,7 @@ A small production ready Spring boot application for stock trading. It is protec
 5. Sample __Postman__ request are in folder resources/templates
 
 
-###Getting Acess Token ###
+###Getting Access Token ###
 1. http request to _http://localhost:8080/oauth/token_
 2. User Credentials
     2. grant type : _password_
@@ -24,5 +24,5 @@ A small production ready Spring boot application for stock trading. It is protec
     2. client_id : _client_
     2. client_secret : _clientpassword_
 
-###Contact##
+### Contact ###
 email : ___sidharthdash19@gmail.com___
