@@ -24,5 +24,6 @@ A small production ready Spring boot application for stock trading. It is protec
     2. client_id : _client_
     2. client_secret : _clientpassword_
 
+
 ### Contact ###
 email : ___sidharthdash19@gmail.com___
